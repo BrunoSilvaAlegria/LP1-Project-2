@@ -9,8 +9,9 @@
 
 ### Ivan Emídio
 
-### Fábio Ribeiro
 
+### Fábio Ribeiro
++ XML Documentation main responsible
 ---
 ## The Dungeon's Map
 
@@ -21,10 +22,44 @@
 
 #### UML Diagram
 
+LP1 Project Diagram | Bruno Alegria | Ivan Emídio | Fábio Ribeiro
+ 
+``` mermaid
+classDiagram
+    class Model {
+
+    }
+    class TrueView {
+
+    }
+    class Controller {
+        
+    }
+    class IView {
+        <<interface>>
+    }
+    class Player {
+
+    }
+    class Enemy {
+
+    }
+    class Item {
+
+    }
+    class Room {
+
+    }
+    class Board {
+
+    }
+```
 ---
 ## References
 
 #### Ideas
+
+Bruno - Use IView interface to organize the methods described in TrueView class, and used on the Controller class (following the MVC format).
 
 #### AI Code
 
