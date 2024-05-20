@@ -7,6 +7,8 @@ namespace YetAnotherDungeonCrawler
 {
     public interface IView
     {
-        
+        string MainMenu();
+
+        Player PlayerDetails();
     }
 }
