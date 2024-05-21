@@ -10,9 +10,7 @@
 ### Ivan Emídio
 
 
-
 ### Fábio Ribeiro
-
 + XML Documentation main responsible
 ---
 ## The Dungeon's Map
@@ -55,7 +53,7 @@ classDiagram
     class Board {
 
     }
-    ```
+```
 ---
 ## References
 
