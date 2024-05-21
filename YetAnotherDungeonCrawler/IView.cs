@@ -10,5 +10,7 @@ namespace YetAnotherDungeonCrawler
         string MainMenu();
 
         Player PlayerDetails();
+
+        string PlayerStatsDisplay()
     }
 }
