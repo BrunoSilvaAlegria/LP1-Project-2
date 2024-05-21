@@ -7,6 +7,7 @@ namespace YetAnotherDungeonCrawler
 {
     public class Item
     {
+        private bool used = false;
         
     }
 }
