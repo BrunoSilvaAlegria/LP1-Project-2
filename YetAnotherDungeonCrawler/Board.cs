@@ -5,17 +5,28 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// This class is responsible for the creation
+    /// of the dungeon and the rooms 
+    /// /// </summary>
     public class Board
     {
         private int[,] board;
-
+    /// <summary>
+    /// This constructor is responsible for the size 
+    /// of the dungeon in this case 3x3
+    /// </summary>
     public Board()
     {
-        // Inicializar um board 3x3
         board = new int[3, 3];
     }
 
-    // Atribuir Valores ao Board
+    /// <summary>
+    /// This method gives a value to each room
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <param name="value"></param>
     public void SetValue(int row, int col, int value)
     {
         if (IsValidPosition(row, col))
@@ -28,7 +39,20 @@ namespace YetAnotherDungeonCrawler
         }
     }
 
-    // Receber um Valor do Board
+    /// <summary>
+    /// This method picks the value from the
+    /// chosen room, in case an invalid room
+    /// in case the selected room is chosen
+    /// gives invalid 
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <returns></returns> <summary>
+    /// 
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <returns></returns>
     public int GetValue(int row, int col)
     {
         if (IsValidPosition(row, col))
@@ -42,7 +66,9 @@ namespace YetAnotherDungeonCrawler
         }
     }
 
-    // Print Board
+    /// <summary>
+    /// Method responsible for printing the dungeon
+    /// </summary>
     public void PrintBoard()
     {
         for (int i = 0; i < 3; i++)
@@ -55,7 +81,18 @@ namespace YetAnotherDungeonCrawler
         }
     }
 
-    // Metodo para ver se uma posiçao e valida
+    /// <summary>
+    /// Method responsible for verifying valid position
+    /// in the array
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <returns></returns> <summary>
+    /// 
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="col"></param>
+    /// <returns></returns>
     private bool IsValidPosition(int row, int col)
     {
         return row >= 0 && row < 3 && col >= 0 && col < 3;
