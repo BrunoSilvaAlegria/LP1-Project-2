@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
-    public class TrueView : IView
+    public class TrueView : IView //Extends IView interface
     {
         private readonly Controller controller;
+        private Player player;
 
-        public TrueView(Controller controller)
+        public TrueView(Controller controller, Player player)
         {
             this.controller = controller;
+            this.player = player;
         }
 
         public string MainMenu()
@@ -21,14 +23,24 @@ namespace YetAnotherDungeonCrawler
             return "Hi";
         }
 
-        public Player PlayerDetails()
+        public Player PlayerDetails() //eliminate
         {
             string name;
 
             Console.WriteLine("What is your name?");
             name = Console.ReadLine();
 
-            return new Player(name);
+            return new Player();
+        }
+
+        public void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public string GetUserInput()
+        {
+            return Console.ReadLine();
         }
     
 
