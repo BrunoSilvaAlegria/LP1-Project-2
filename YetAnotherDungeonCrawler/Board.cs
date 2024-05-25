@@ -6,6 +6,10 @@ using System.IO;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// This class is responsible for the creation
+    /// of the dungeon and the rooms 
+    /// /// </summary>
     public class Board
     {
         public Room[,] Rooms { get; private set; }

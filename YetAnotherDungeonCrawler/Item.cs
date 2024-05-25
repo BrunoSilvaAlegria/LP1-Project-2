@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// Class responsible for verifying item state
+    /// used or not used
+    /// </summary>
     public class Item
     {
         public string Name { get; set; }

@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// Class responsible for registering Player
+    /// information, such as, Name, Health Points,
+    /// Attack Power and Inventory
+    /// </summary>
     public class Player
     {
         public int Health { get; set; }
