@@ -8,9 +8,8 @@ namespace YetAnotherDungeonCrawler
     public interface IView
     {
         string MainMenu();
-
         Player PlayerDetails();
-
-        string PlayerStatsDisplay()
+        void DisplayMessage(string message);
+        string GetUserInput();
     }
 }
