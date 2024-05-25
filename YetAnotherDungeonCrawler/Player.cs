@@ -7,19 +7,28 @@ namespace YetAnotherDungeonCrawler
 {
     public class Player
     {
-        public string Name { get; } //Name entered by player
-        public int Health = 10; //Player's base life
-        private int AttackPower = 2; //Player's base attack power
-        public List<Item> Inventory = new List<Item>[,];
+        public int Health { get; set; }
+        public int AttackPower { get; set; }
+        public List<Item> Inventory { get; private set; }
 
-        public Player(string name)
+        public Player()
         {
-            Name = name;
+            Health = 20; // Player health 
+            AttackPower = 5; // Player attack power 
+            Inventory = new List<Item>();
         }
 
-        public override string ToString()
+        public void AddItemToInventory()
         {
-            return $"Name";
-        } 
+            //Health Potion restores 10 health
+            Item healthPotion = new Item("Health Potion", 10); 
+            Inventory.Add(healthPotion);
+        }
+
+        public void UseItem(Item item)
+        {
+            Health += item.Healing;
+            Inventory.Remove(item);
+        }
     }
 }
