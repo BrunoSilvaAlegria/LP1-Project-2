@@ -7,59 +7,38 @@ namespace YetAnotherDungeonCrawler
 {
     public class Room
     {
-    private int[,] board;
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        public bool NorthExit { get; private set; }
+        public bool SouthExit { get; private set; }
+        public bool EastExit { get; private set; }
+        public bool WestExit { get; private set; }
+        public bool HasEnemy { get; private set; }
+        public Item RoomItem { get; private set; }
 
-    public Board()
-    {
-        // Inicializar um board 3x3
-        board = new int[3, 3];
-    }
-
-    // Atribuir Valores ao Board
-    public void SetValue(int row, int col, int value)
-    {
-        if (IsValidPosition(row, col))
+        public Room(int x, int y, bool northExit, bool southExit, bool eastExit, bool westExit, bool hasEnemy, Item roomItem)
         {
-            board[row, col] = value;
-        }
-        else
-        {
-            Console.WriteLine("Invalid position!");
-        }
-    }
+            X = x; 
+            Y = y;
 
-    // Receber um Valor do Board
-    public int GetValue(int row, int col)
-    {
-        if (IsValidPosition(row, col))
-        {
-            return board[row, col];
-        }
-        else
-        {
-            Console.WriteLine("Invalid position!");
-            return -1; // Receber uma exceçao
-        }
-    }
+            // Checks for an exit in a chosen direction
+            NorthExit = northExit;
+            SouthExit = southExit;
+            EastExit = eastExit;
+            WestExit = westExit;
 
-    // Print Board
-    public void PrintBoard()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                Console.Write(board[i, j] + " ");
-            }
-            Console.WriteLine();
+            HasEnemy = hasEnemy; // Checks for the presence of an enemy
+            RoomItem = roomItem; // Checks for the presence of an item
         }
-    }
 
-    // Metodo para ver se uma posiçao e valida
-    private bool IsValidPosition(int row, int col)
-    {
-        return row >= 0 && row < 3 && col >= 0 && col < 3;
-    }
+        public void RemoveEnemy()
+        {
+            HasEnemy = false;
+        }
 
+        public void RemoveItem()
+        {
+            RoomItem = null;
+        }
     }
 }
