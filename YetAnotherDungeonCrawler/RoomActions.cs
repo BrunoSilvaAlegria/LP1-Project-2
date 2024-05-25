@@ -1,7 +1,7 @@
 namespace YetAnotherDungeonCrawler
 {
     /// <summary>
-    /// Enumeration responsible for available actions
+    /// Enumeration responsible for available actions.
     /// in each room
     /// </summary> <summary>
     /// 
