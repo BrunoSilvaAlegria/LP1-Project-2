@@ -6,19 +6,12 @@ namespace YetAnotherDungeonCrawler
     {
         static void Main(string[] args)
         {
-        public static void Main()
-    
-        // criar board
-        Board board = new Board();
+            IView view = new TrueView();
+            
+            string filePath = "YetAnotherDungeonCrawler/rooms.txt";
+            Controller controller = new Controller(view, filePath);
 
-        // Atribuir valores
-        board.SetValue(0, 0, 1);
-        board.SetValue(1, 1, 2);
-        board.SetValue(2, 2, 3);
-
-        // Print board
-        board.PrintBoard();
-    
+            controller.StartGame();
         }
     }
 }
