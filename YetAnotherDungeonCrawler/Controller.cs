@@ -34,8 +34,8 @@ namespace YetAnotherDungeonCrawler
         {
             _view = view;
             
-            view.MainMenu();
-            string action = view.Choice();
+            view.MainMenu(); //Shows the initial and main menu of the game
+            string action; //Initialize the player's action
             bool playing = true;
 
             while (playing)
@@ -64,7 +64,7 @@ namespace YetAnotherDungeonCrawler
                 {
                     //Gives the player the opportunity to choose what action 
                     //it wants to perform
-                    view.Choice();
+                    action = view.Choice();
 
                     switch (action)
                     {
@@ -102,7 +102,7 @@ namespace YetAnotherDungeonCrawler
             string direction = _view.Directions();
             Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
 
-            switch (direction)
+            
             switch (direction)
             {
                 case "north":
