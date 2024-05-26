@@ -41,7 +41,7 @@
 ##### **Interface**: IView
   * **IView**: Contains all methods described in the TrueView class, but simplified. Basically, only calls them.
     
-###### **Text File**: rooms.txt
+##### **Text File**: rooms.txt
   * **rooms.txt**: Contains the rooms descriptions, with its XY coordinates, exits available, and if it has an enemy and/or an item, in this order. The last three are represented by 0 and 1, with 0 being false and 1 being true, while the XY coordinates go from 0 to 2, in a grid format. For example, the player starts in the middle of the map, so the room he's in has the coordinates (1,1).
 
 ### UML Diagram
