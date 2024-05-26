@@ -6,15 +6,19 @@
 ### Bruno Alegria
 + Creator of the git repository
 + Main responsible for the README.md file
++ UML diagram creator
++ View classes main responsible
++ Controller class responsible
 
 ### Ivan Emídio
-
++ Board class main responsible
++ Controller class main responsible
 
 ### Fábio Ribeiro
 + XML Documentation main responsible
 ---
 ## The Dungeon's Map
-
+![Dungeon Map](https://github.com/BrunoSilvaAlegria/LP1-Project-2/assets/160754544/0dfb9770-621e-4baa-a7b1-d5411e8c58ab)
 ---
 ## Architecture
 
@@ -22,11 +26,11 @@
 
 #### UML Diagram
 
-LP1 Project Diagram | Bruno Alegria | Ivan Emídio | Fábio Ribeiro
+LP1 Project II Diagram | Bruno Alegria | Ivan Emídio | Fábio Ribeiro
  
 ``` mermaid
 classDiagram
-    class Model {
+    class Program {
 
     }
     class TrueView {
@@ -53,14 +57,33 @@ classDiagram
     class Board {
 
     }
+
+    IView <|.. TrueView
+    Program --> TrueView
+    Program o--> Controller
+    Player --> Item
+    Board --> Room
+    Board --> Item
+    Controller --> IView
+    Controller --> Player
+    Controller --> Board
+    Controller --> Enemy
+    Controller --> Item
+    Controller o--> Room    
+    
 ```
 ---
 ## References
 
 #### Ideas
 
-Bruno - Use IView interface to organize the methods described in TrueView class, and used on the Controller class (following the MVC format).
+Bruno - Use IView interface to organize the writing and reading methods described in TrueView class, and use them on the Controller class (following the MVC format).
 
 #### AI Code
 
 #### Open Code
+
+#### Libraries
+* [Mermaid diagram on draw.io](https://www.drawio.com/blog/mermaid-diagrams)
+* [How to add a .png file to Github with git lfs](https://josh-ops.com/posts/add-files-to-git-lfs/)
+
