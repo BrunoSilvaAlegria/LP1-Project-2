@@ -174,18 +174,17 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         private void UseItem()
         {
-            _view.DisplayMessage("Enter the name of the item to use:");
-            string itemName = _view.GetUserInput();
-
-            Item item = _player.Inventory.Find(i => i.Name.ToLower() == itemName.ToLower());
-            if (item != null)
+            foreach (Item item in _player.Inventory) //Sees all the items in the inventory
             {
-                _player.UseItem(item);
-                _view.DisplayMessage($"You used {item.Name} and restored {item.Healing} health.");
-            }
-            else
-            {
-                _view.DisplayMessage("You do not have that item.");
+                if (item != null)
+                {
+                    _player.UseItem(item); //Used the item and removes it from the inventory
+                    _view.ItemUsage(); //Shows item usage message
+                }
+                else
+                {
+                    _view.NoItemInInventory();//Shows that there is no item to be used
+                }
             }
         }
         /// <summary>
