@@ -98,34 +98,46 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         private void MovePlayer()
         {
+            //Shows the directions the player can choose to go
             string direction = _view.Directions();
             Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
 
             switch (direction)
+            switch (direction)
             {
                 case "north":
-                    if (_currentPosition.x > 0 && currentRoom.NorthExit && _board.Rooms[_currentPosition.x - 1, _currentPosition.y] != null)
+                    if (_currentPosition.y > 0 && currentRoom.NorthExit == true && _board.Rooms[_currentPosition.x, _currentPosition.y - 1] != null)
                     {
-                        _currentPosition.x--;
+                        _currentPosition.y--; //Goes up into the dungeon, in a grid format
+                        _view.SuccessfulMove();
                     }
                     else
                         _view.CannotMoveThatWay();
                     break;
                 case "south":
-                    if (_currentPosition.x < 2 && currentRoom.SouthExit && _board.Rooms[_currentPosition.x + 1, _currentPosition.y] != null)
-                        _currentPosition.x++;
+                    if (_currentPosition.y < 2 && currentRoom.SouthExit == true && _board.Rooms[_currentPosition.x, _currentPosition.y + 1] != null)
+                    {
+                        _currentPosition.x++; //Goes down into the dungeon, in a grid format
+                        _view.SuccessfulMove();
+                    }
                     else
                         _view.CannotMoveThatWay();
                     break;
                 case "east":
-                    if (_currentPosition.y < 2 && currentRoom.EastExit && _board.Rooms[_currentPosition.x, _currentPosition.y + 1] != null)
-                        _currentPosition.y++;
+                    if (_currentPosition.y < 2 && currentRoom.EastExit == true && _board.Rooms[_currentPosition.x + 1, _currentPosition.y] != null)
+                    {
+                        _currentPosition.y++; //Goes right into the dungeon, in a grid format
+                        _view.SuccessfulMove();
+                    }
                     else
                         _view.CannotMoveThatWay();
                     break;
                 case "west":
-                    if (_currentPosition.y > 0 && currentRoom.WestExit && _board.Rooms[_currentPosition.x, _currentPosition.y - 1] != null)
-                        _currentPosition.y--;
+                    if (_currentPosition.y > 0 && currentRoom.WestExit == true && _board.Rooms[_currentPosition.x - 1, _currentPosition.y] != null)
+                    {
+                        _currentPosition.y--; //Goes left into the dungeon, in a grid format
+                        _view.SuccessfulMove();
+                    }
                     else
                         _view.CannotMoveThatWay();
                     break;
