@@ -19,7 +19,10 @@ namespace YetAnotherDungeonCrawler
             Rooms = new Room[3, 3];
             ReadBoardData(filePath);
         }
-
+        /// <summary>
+        /// Method responsible for reading board
+        /// </summary>
+        /// <param name="filePath"></param>
         private void ReadBoardData(string filePath)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -41,7 +44,7 @@ namespace YetAnotherDungeonCrawler
                     Item roomItem = null;
                     if (hasItem)
                     {
-                        roomItem = new Item("Health Potion", 10); // Fixed item for all rooms that contain an item
+                        roomItem = new Item("Health Potion", 10);
                     }
                     Rooms[x, y] = new Room(x, y, northExit, southExit, eastExit, westExit, hasEnemy, roomItem);
                 }
