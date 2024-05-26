@@ -62,7 +62,8 @@ namespace YetAnotherDungeonCrawler
                 
                 do
                 {
-                    
+                    //Gives the player the opportunity to choose what action 
+                    //it wants to perform
                     view.Choice();
 
                     switch (action)
