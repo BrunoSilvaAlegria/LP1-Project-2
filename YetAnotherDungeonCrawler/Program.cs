@@ -6,12 +6,14 @@ namespace YetAnotherDungeonCrawler
     {
         static void Main(string[] args)
         {
-            IView view = new TrueView();
+            Player player = new Player();
             
             string filePath = "YetAnotherDungeonCrawler/rooms.txt";
-            Controller controller = new Controller(view, filePath);
+            Controller controller = new Controller(filePath);
 
-            controller.StartGame();
+            IView view = new TrueView(controller, player);
+            
+            controller.StartGame(view);
         }
     }
 }
