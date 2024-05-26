@@ -32,7 +32,7 @@ namespace YetAnotherDungeonCrawler
         /// <param name="view"></param>
         public void StartGame(IView view)
         {
-            _view = view; //Initialize the view variable
+            _view = view;
             
             view.MainMenu();
             string action = view.Choice();
@@ -50,15 +50,14 @@ namespace YetAnotherDungeonCrawler
 
                 if (currentRoom.HasEnemy)
                 {
-                    _enemy = new Enemy();  //May want to initialize this with specific properties
+                    _enemy = new Enemy();
                     view.EnemyDetection();
                 }
                 else
                 {
                     _enemy = null;
                 }
-
-                //Cycle that keeps showing the actions menu until the player quits               // 
+ 
                 do
                 {
                     view.Choice();
@@ -144,7 +143,7 @@ namespace YetAnotherDungeonCrawler
             {
                 _view.DisplayMessage($"You found an item: {currentRoom.RoomItem.Name}!");
                 _player.AddItemToInventory();
-                currentRoom.RemoveItem(); // Remove the item from the room after picking it up
+                currentRoom.RemoveItem();
             }
             else
             {
