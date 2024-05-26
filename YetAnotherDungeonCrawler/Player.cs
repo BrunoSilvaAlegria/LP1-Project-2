@@ -7,7 +7,7 @@ namespace YetAnotherDungeonCrawler
 {
     /// <summary>
     /// Class responsible for registering Player
-    /// information, such as, Name, Health Points,
+    /// information, such as, Health Points,
     /// Attack Power and Inventory
     /// </summary>
     public class Player
@@ -16,20 +16,31 @@ namespace YetAnotherDungeonCrawler
         public int AttackPower { get; set; }
         public List<Item> Inventory { get; private set; }
 
+        /// <summary>
+        /// Set Player Health, Attack Power
+        /// and Inventory List
+        /// </summary>
         public Player()
         {
-            Health = 30; // Player health 
-            AttackPower = 10; // Player attack power 
+            Health = 30;
+            AttackPower = 10; 
             Inventory = new List<Item>();
         }
 
+        /// <summary>
+        /// Method responsible for adding items
+        /// in inventory
+        /// </summary>
         public void AddItemToInventory()
         {
-            //Health Potion restores 10 health
             Item healthPotion = new Item("Health Potion", 10); 
             Inventory.Add(healthPotion);
         }
-
+        /// <summary>
+        /// Method responsible for using item
+        /// inside the inventory
+        /// </summary>
+        /// <param name="item"></param>
         public void UseItem(Item item)
         {
             Health += item.Healing;
