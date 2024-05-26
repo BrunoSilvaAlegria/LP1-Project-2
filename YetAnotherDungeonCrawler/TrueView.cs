@@ -114,6 +114,7 @@ namespace YetAnotherDungeonCrawler
         public string Directions()
         {
             Console.WriteLine("In what direction would you like to go?");
+            Console.Write("> ");
             return Console.ReadLine();
         }
         /// <summary>
@@ -124,14 +125,7 @@ namespace YetAnotherDungeonCrawler
         {
             Console.WriteLine("You cannot move that way.");
         }
-        /// <summary>
-        /// Method responsible for registering Player Input
-        /// </summary>
-        /// <returns></returns>
-        public string GetUserInput()
-        {
-            return Console.ReadLine();
-        }
+        
         /// <summary>
         /// Method responsible for telling Enemy 
         /// presence in Room if true
