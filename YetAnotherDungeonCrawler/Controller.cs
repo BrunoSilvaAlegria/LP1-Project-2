@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// Class responsible for Player
+    /// actions inside each room
+    /// </summary>
     public class Controller
     {
         private IView _view;
@@ -16,14 +20,19 @@ namespace YetAnotherDungeonCrawler
 
         public Controller(string filePath)
         {
-            _player = new Player(); //Initialize the player
-            _board = new Board(filePath); //Initialize the board (map)
-            _currentPosition = (1, 1); //Sets the initial position of the player
+            _player = new Player();
+            _board = new Board(filePath);
+            _currentPosition = (1, 1);
         }
-
+        
+        /// <summary>
+        /// Method responsible for registering
+        /// PLayer actions until he dies or leave
+        /// dungeon
+        /// </summary>
         public void StartGame(IView view)
         {
-            _view = view; //Initialize the view variable
+            _view = view;
             
             view.MainMenu();
             string action = view.Choice();
@@ -41,7 +50,7 @@ namespace YetAnotherDungeonCrawler
 
                 if (currentRoom.HasEnemy)
                 {
-                    _enemy = new Enemy();  //May want to initialize this with specific properties
+                    _enemy = new Enemy();
                     view.EnemyDetection();
                 }
                 else
@@ -49,10 +58,10 @@ namespace YetAnotherDungeonCrawler
                     _enemy = null;
                 }
 
-                //Cycle that keeps showing the actions menu until the player quits
+                
                 do
                 {
-                    //Gives the player the opportunity to choose what action it wants to perform
+                    
                     view.Choice();
 
                     switch (action)
@@ -81,10 +90,12 @@ namespace YetAnotherDungeonCrawler
                 } while (action != "quit");
             }
         }
-
+        /// <summary>
+        /// Method responsible for Player
+        /// Movement
+        /// </summary>
         private void MovePlayer()
         {
-            //Shows the directions the player can choose to go
             string direction = _view.Directions();
             Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
 
@@ -121,7 +132,12 @@ namespace YetAnotherDungeonCrawler
                     break;
             }
         }
-
+        /// <summary>
+        /// Method responsible for 
+        /// Player search current room,
+        /// and remove item from the room
+        /// if he picks it up
+        /// </summary>
         private void SearchRoom()
         {
             Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
@@ -129,14 +145,19 @@ namespace YetAnotherDungeonCrawler
             {
                 _view.DisplayMessage($"You found an item: {currentRoom.RoomItem.Name}!");
                 _player.AddItemToInventory();
-                currentRoom.RemoveItem(); // Remove the item from the room after picking it up
+                currentRoom.RemoveItem();
             }
             else
             {
                 _view.ItemNotFound();
             }
         }
-
+        /// <summary>
+        /// Method responsible for
+        /// using requested item, and
+        /// verifying if the Player
+        /// actually have it to use
+        /// </summary>
         private void UseItem()
         {
             _view.DisplayMessage("Enter the name of the item to use:");
@@ -153,7 +174,13 @@ namespace YetAnotherDungeonCrawler
                 _view.DisplayMessage("You do not have that item.");
             }
         }
-
+        /// <summary>
+        /// Method responsible for the
+        /// action Attack, it also verify if an enemy
+        /// exists.
+        /// This method also verify enemy Hp
+        /// and if it is hp<0 kills enemy
+        /// </summary>
         private void Attack()
         {
             if (_enemy != null)
