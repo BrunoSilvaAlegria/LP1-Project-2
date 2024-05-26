@@ -9,6 +9,7 @@ namespace YetAnotherDungeonCrawler
     {
         private readonly Controller controller;
         private Player player;
+        private Enemy enemy;
 
         public TrueView(Controller controller, Player player)
         {
@@ -16,11 +17,43 @@ namespace YetAnotherDungeonCrawler
             this.player = player;
         }
 
-        public string MainMenu()
+        public void InitialMessage()
         {            
-            Console.WriteLine("\ud83d\udde1\ufe0f Welcome adventurer! \ud83e\uddd9");
+            Console.WriteLine("\ud83d\udde1\ufe0f Welcome to the dungeon adventurer! \ud83e\uddd9");
+        }
+        public string MainMenu()
+        {
+            Console.WriteLine("");
 
-            return "Hi";
+            return Console.ReadLine();
+        }
+        public void Choice()
+        {
+            Console.WriteLine("What will you do?");
+        }
+        public void EndMessage()
+        {
+            Console.WriteLine("Thank You For Playing!");
+        }
+        public void InvalidAction()
+        {
+            Console.Error.WriteLine("\n>>> Unknown action! <<<\n");
+        }
+        public void PlayerAttack()
+        {
+            Console.WriteLine($"You attacked the enemy and dealt {player.AttackPower} damage.");
+        }
+        public void EnemyAttack()
+        {
+            Console.WriteLine($"The enemy attacked you and dealt {enemy.AttackPower} damage.");
+        }
+        public void PlayerDeath()
+        {
+            Console.WriteLine("You have been defeated by the enemy.\n GAME OVER!");
+        }
+        public void EnemyDeath()
+        {
+            Console.WriteLine("You have defeated the enemy!");
         }
 
         public Player PlayerDetails() //eliminate
