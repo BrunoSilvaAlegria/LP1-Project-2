@@ -11,7 +11,7 @@ namespace YetAnotherDungeonCrawler
     /// </summary>
     public class Item
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "Healing Potion";
         public int Healing { get; set; }
 
         /// <summary>

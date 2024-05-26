@@ -157,13 +157,13 @@ namespace YetAnotherDungeonCrawler
             Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
             if (currentRoom.RoomItem != null)
             {
-                _view.DisplayMessage($"You found an item: {currentRoom.RoomItem.Name}!");
-                _player.AddItemToInventory();
-                currentRoom.RemoveItem();
+                _view.ItemFound(); //Show item found message
+                _player.AddItemToInventory(); //Adds the item to the player's inventory
+                currentRoom.RemoveItem(); //Removes the item from the room after collecting it
             }
             else
             {
-                _view.ItemNotFound();
+                _view.ItemNotFound(); //Show item not found message
             }
         }
         /// <summary>
