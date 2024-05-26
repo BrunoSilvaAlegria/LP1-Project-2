@@ -20,9 +20,9 @@ namespace YetAnotherDungeonCrawler
 
         public Controller(string filePath)
         {
-            _player = new Player();
-            _board = new Board(filePath);
-            _currentPosition = (1, 1);
+            _player = new Player(); //Initialize the player
+            _board = new Board(filePath); //Initialize the board (map)
+            _currentPosition = (1, 1); //Sets the player's initial coordinates
         }
         
         /// <summary>
