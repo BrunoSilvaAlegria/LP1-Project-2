@@ -13,13 +13,14 @@ namespace YetAnotherDungeonCrawler
     {
         public int Health { get; set; }
         public int AttackPower { get; set; }
-        /// <summary>
-        /// Set Enemy Health and Attack Power
+         /// <summary>
+        /// Set Enemy Health and Attack Power 
+        /// accordingly to the wanted values
         /// </summary>
-        public Enemy()
+        public Enemy(int health, int attackPower)
         {
-            Health = 10; 
-            AttackPower = 3; 
+            Health = health; 
+            AttackPower = attackPower; 
         }
     }
 }
