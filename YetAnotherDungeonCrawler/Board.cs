@@ -24,15 +24,10 @@ namespace YetAnotherDungeonCrawler
         {
             using (StreamReader sr = new StreamReader(filePath))
             {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        string[] parts = line.Split(',');
-                        if (parts.Length != 8)
-                        {
-                            //Console.WriteLine("Error: Line does not contain exactly 8 values.");
-                            continue;
-                    }
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(',');                    
 
                     int x = int.Parse(parts[0]);
                     int y = int.Parse(parts[1]);
@@ -49,7 +44,6 @@ namespace YetAnotherDungeonCrawler
                         roomItem = new Item("Health Potion", 10); // Fixed item for all rooms that contain an item
                     }
                     Rooms[x, y] = new Room(x, y, northExit, southExit, eastExit, westExit, hasEnemy, roomItem);
-                    Console.WriteLine($"Created room at ({x},{y}) with northExit: {northExit}, southExit: {southExit}, eastExit: {eastExit}, westExit: {westExit}, hasEnemy: {hasEnemy}, hasItem: {hasItem}");
                 }
             }
         }
