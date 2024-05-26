@@ -7,13 +7,13 @@ namespace YetAnotherDungeonCrawler
 {
     public interface IView
     {
-        string InitialMessage();
+        void InitialMessage();
         string MainMenu();
         Player PlayerDetails();
-        string PlayerAttack();
-        string EnemyAttack();
-        string PlayerDeath();
-        string EnemyDeath();
+        void PlayerAttack();
+        void EnemyAttack();
+        void PlayerDeath();
+        void EnemyDeath();
         void EndMessage();
         void Choice();
         void InvalidAction();
