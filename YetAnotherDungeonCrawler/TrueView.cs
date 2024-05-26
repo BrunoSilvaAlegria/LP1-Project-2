@@ -12,7 +12,6 @@ namespace YetAnotherDungeonCrawler
     {
         private readonly Controller controller;
         private Player player;
-        private Enemy enemy;
 
         public TrueView(Controller controller, Player player)
         {
@@ -32,14 +31,14 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         public void MainMenu()
         {            
-            Console.WriteLine("\ud83d\udde1\ufe0f Welcome to the dungeon adventurer! \ud83e\uddd9");
-            Console.Write("You are in a dark room and need to find an exit!");
+            Console.WriteLine("\n\ud83d\udde1\ufe0f Welcome to the dungeon adventurer! \ud83e\uddd9");
+            Console.Write("You are in a dark room and need to find an exit! ");
             Console.WriteLine("Explore the dungeon to find it.");
             Console.Write("But be careful, you're not alone in here...");
             Console.WriteLine("Defeat the enemies to continue your adventure!");
             Console.WriteLine("Also, be sure to search the rooms for items that" +
-            " may help you on your journey");
-            Console.WriteLine("Good Luck\n");
+            " may help you on your journey.");
+            Console.WriteLine("\ud83c\udf40 Good Luck! \ud83c\udf40 \n");
             Console.WriteLine("--------------------------------------------\n");
         }
         /// <summary>
@@ -52,6 +51,14 @@ namespace YetAnotherDungeonCrawler
             Console.WriteLine("What will you do?\n");
             Console.Write("> ");
             return Console.ReadLine().ToLower(); //Makes the player's input into lowercase
+        }
+        /// <summary>
+        /// Method responsible for letting know that the player successfully 
+        /// moved to the next room, in the direction chosen
+        /// </summary>
+        public void SuccessfulMove()
+        {
+            Console.WriteLine("You have moved to the room in the direction chosen.\n");
         }
         /// <summary>
         /// Method responsible for End Game message
