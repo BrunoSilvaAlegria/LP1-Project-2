@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace YetAnotherDungeonCrawler
 {
+    /// <summary>
+    /// Interface responsible for showing all
+    /// outputs from class TrueView
+    /// </summary> <summary>
+    /// 
+    /// </summary>
     public interface IView
     {
         string DisplayMessage(string message);
