@@ -147,7 +147,7 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         public void ItemFound()
         {
-
+            Console.WriteLine($"You found an item: Healing Potion!");
         }
         /// <summary>
         /// Method responsible for detecting no Item
