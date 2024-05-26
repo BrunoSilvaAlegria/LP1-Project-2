@@ -50,7 +50,8 @@ namespace YetAnotherDungeonCrawler
 
                 if (currentRoom.HasEnemy)
                 {
-                    _enemy = new Enemy();
+                    //Initialize this enemy with its health and attack power values
+                    _enemy = new Enemy(10,5);  
                     view.EnemyDetection();
                 }
                 else
