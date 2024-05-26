@@ -7,17 +7,22 @@ namespace YetAnotherDungeonCrawler
 {
     public interface IView
     {
-        void InitialMessage();
-        string MainMenu();
-        Player PlayerDetails();
+        string DisplayMessage(string message);
+        
+        void MainMenu();
         void PlayerAttack();
         void EnemyAttack();
         void PlayerDeath();
         void EnemyDeath();
         void EndMessage();
-        void Choice();
+        string Choice();
         void InvalidAction();
-        void DisplayMessage(string message);
+        string Directions();
+        void CannotMoveThatWay();
+        void EnemyDetection();
+        void NoEnemy();
+        void ItemFound();
+        void ItemNotFound();
         string GetUserInput();
     }
 }

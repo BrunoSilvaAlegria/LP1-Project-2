@@ -17,19 +17,29 @@ namespace YetAnotherDungeonCrawler
             this.player = player;
         }
 
-        public void InitialMessage()
+        public string DisplayMessage(string message)
+        {
+            return message;
+        }
+
+        public void MainMenu()
         {            
             Console.WriteLine("\ud83d\udde1\ufe0f Welcome to the dungeon adventurer! \ud83e\uddd9");
+            Console.Write("You are in a dark room and need to find an exit!");
+            Console.WriteLine("Explore the dungeon to find it.");
+            Console.Write("But be careful, you're not alone in here...");
+            Console.WriteLine("Defeat the enemies to continue your adventure!");
+            Console.WriteLine("Also, be sure to search the rooms for items that" +
+            " may help you on your journey");
+            Console.WriteLine("Good Luck\n");
+            Console.WriteLine("--------------------------------------------\n");
         }
-        public string MainMenu()
+        public string Choice()
         {
-            Console.WriteLine("");
-
-            return Console.ReadLine();
-        }
-        public void Choice()
-        {
+            Console.WriteLine("You have this available actions: ");
+            Console.WriteLine("\nMove\nSearch\nUse Item\nAttack\nQuit");
             Console.WriteLine("What will you do?");
+            return Console.ReadLine();
         }
         public void EndMessage()
         {
@@ -37,7 +47,7 @@ namespace YetAnotherDungeonCrawler
         }
         public void InvalidAction()
         {
-            Console.Error.WriteLine("\n>>> Unknown action! <<<\n");
+            Console.Error.WriteLine("Unknown action! Please try again.\n");
         }
         public void PlayerAttack()
         {
@@ -56,27 +66,36 @@ namespace YetAnotherDungeonCrawler
             Console.WriteLine("You have defeated the enemy!");
         }
 
-        public Player PlayerDetails() //eliminate
+        public string Directions()
         {
-            string name;
-
-            Console.WriteLine("What is your name?");
-            name = Console.ReadLine();
-
-            return new Player();
+            Console.WriteLine("In what direction would you like to go?");
+            return Console.ReadLine();
         }
-
-        public void DisplayMessage(string message)
+        
+        public void CannotMoveThatWay()
         {
-            Console.WriteLine(message);
+            Console.WriteLine("You cannot move that way.");
         }
-
         public string GetUserInput()
         {
             return Console.ReadLine();
         }
-    
+        public void EnemyDetection()
+        {
+            Console.WriteLine("There is an enemy in this room.");
+        }
+        public void NoEnemy()
+        {
+            Console.WriteLine("There is no enemy to attack.");
+        }
+        public void ItemFound()
+        {
 
+        }
+        public void ItemNotFound()
+        {
+            Console.WriteLine("There is no item to be found here.");
+        }
 
     }
 }
