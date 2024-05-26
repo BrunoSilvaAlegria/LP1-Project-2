@@ -18,8 +18,8 @@ namespace YetAnotherDungeonCrawler
 
         public Player()
         {
-            Health = 20; // Player health 
-            AttackPower = 5; // Player attack power 
+            Health = 30; // Player health 
+            AttackPower = 10; // Player attack power 
             Inventory = new List<Item>();
         }
 
