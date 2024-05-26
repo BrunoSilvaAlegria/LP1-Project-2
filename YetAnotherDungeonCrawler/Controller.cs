@@ -23,6 +23,7 @@ namespace YetAnotherDungeonCrawler
 
         public void StartGame()
         {
+            _view.InitialMessage();
             bool playing = true;
 
             while (playing)
@@ -35,7 +36,6 @@ namespace YetAnotherDungeonCrawler
                     continue;
                 }
 
-                _view.DisplayMessage($"You are in room ({currentRoom.X}, {currentRoom.Y}).");
                 _view.DisplayMessage($"Exits: North: {currentRoom.NorthExit}, South: {currentRoom.SouthExit}, East: {currentRoom.EastExit}, West: {currentRoom.WestExit}");
                 if (currentRoom.HasEnemy)
                 {
@@ -48,30 +48,36 @@ namespace YetAnotherDungeonCrawler
                 }
                 if (currentRoom.RoomItem != null) _view.DisplayMessage($"There is an item here: {currentRoom.RoomItem.Name}");
 
-                _view.DisplayMessage("Choose an action: Move, Search, UseItem, Attack, Quit");
-                string action = _view.GetUserInput().ToLower();
-
-                switch (action)
+                //Cycle that keeps showing the actions menu until the player quits               // 
+                do
                 {
-                    case "move":
-                        MovePlayer();
-                        break;
-                    case "search":
-                        SearchRoom();
-                        break;
-                    case "useitem":
-                        UseItem();
-                        break;
-                    case "attack":
-                        AttackEnemy();
-                        break;
-                    case "quit":
-                        playing = false;
-                        break;
-                    default:
-                        _view.DisplayMessage("Invalid action. Try again.");
-                        break;
-                }
+                    _view.Choice();
+                    string action = _view.GetUserInput().ToLower();
+
+                    switch (action)
+                    {
+                        case "move":
+                            MovePlayer();
+                            break;
+                        case "search":
+                            SearchRoom();
+                            break;
+                        case "use item":
+                            UseItem();
+                            break;
+                        case "attack":
+                            Attack();
+                            break;
+                        case "quit":
+                            playing = false;
+                            _view.EndMessage();
+                            break;
+
+                        default:
+                            _view.InvalidAction();
+                            break;
+                    }
+                } while (action == "quit");
             }
         }
 
@@ -144,21 +150,21 @@ namespace YetAnotherDungeonCrawler
             }
         }
 
-        private void AttackEnemy()
+        private void Attack()
         {
             if (_enemy != null)
             {
                 _enemy.Health -= _player.AttackPower;
-                _view.DisplayMessage($"You attacked the enemy and dealt {_player.AttackPower} damage.");
+                _view.PlayerAttack();
 
                 if (_enemy.Health > 0)
                 {
                     _player.Health -= _enemy.AttackPower;
-                    _view.DisplayMessage($"The enemy attacked you and dealt {_enemy.AttackPower} damage.");
+                    _view.EnemyAttack();
                 }
                 else
                 {
-                    _view.DisplayMessage("You have defeated the enemy!");
+                    _view.EnemyDeath();
                     Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
                     currentRoom.RemoveEnemy();
                     _enemy = null;
@@ -166,7 +172,7 @@ namespace YetAnotherDungeonCrawler
 
                 if (_player.Health <= 0)
                 {
-                    _view.DisplayMessage("You have been defeated by the enemy. Game over.");
+                    _view.PlayerDeath();
                     Environment.Exit(0);
                 }
             }
