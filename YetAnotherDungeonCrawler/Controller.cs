@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,17 +14,19 @@ namespace YetAnotherDungeonCrawler
         private (int x, int y) _currentPosition;
         private Enemy _enemy;
 
-        public Controller(IView view, string filePath)
+        public Controller(string filePath)
         {
-            _view = view;
             _player = new Player();
             _board = new Board(filePath);
-            _currentPosition = (0, 0);
+            _currentPosition = (1, 1);
         }
 
-        public void StartGame()
+        public void StartGame(IView view)
         {
-            _view.InitialMessage();
+            _view = view; //Initialize the view variable
+            
+            view.MainMenu();
+            string action = view.Choice();
             bool playing = true;
 
             while (playing)
@@ -31,28 +34,25 @@ namespace YetAnotherDungeonCrawler
                 Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
                 if (currentRoom == null)
                 {
-                    _view.DisplayMessage("This room does not exist.");
+                    Console.WriteLine("Correct this");
                     playing = false;
                     continue;
                 }
 
-                _view.DisplayMessage($"Exits: North: {currentRoom.NorthExit}, South: {currentRoom.SouthExit}, East: {currentRoom.EastExit}, West: {currentRoom.WestExit}");
                 if (currentRoom.HasEnemy)
                 {
-                    _enemy = new Enemy();  // You may want to initialize this with specific properties
-                    _view.DisplayMessage("There is an enemy here.");
+                    _enemy = new Enemy();  //May want to initialize this with specific properties
+                    view.EnemyDetection();
                 }
                 else
                 {
                     _enemy = null;
                 }
-                if (currentRoom.RoomItem != null) _view.DisplayMessage($"There is an item here: {currentRoom.RoomItem.Name}");
 
                 //Cycle that keeps showing the actions menu until the player quits               // 
                 do
                 {
-                    _view.Choice();
-                    string action = _view.GetUserInput().ToLower();
+                    view.Choice();
 
                     switch (action)
                     {
@@ -69,51 +69,53 @@ namespace YetAnotherDungeonCrawler
                             Attack();
                             break;
                         case "quit":
+                            view.EndMessage();
                             playing = false;
-                            _view.EndMessage();
                             break;
 
                         default:
-                            _view.InvalidAction();
+                            view.InvalidAction();
                             break;
                     }
-                } while (action == "quit");
+                } while (action != "quit");
             }
         }
 
         private void MovePlayer()
         {
-            _view.DisplayMessage("Enter direction (north, south, east, west):");
-            string direction = _view.GetUserInput().ToLower();
+            string direction = _view.Directions();
+            Room currentRoom = _board.Rooms[_currentPosition.x, _currentPosition.y];
 
             switch (direction)
             {
                 case "north":
-                    if (_currentPosition.x > 0 && _board.Rooms[_currentPosition.x - 1, _currentPosition.y]?.NorthExit == true)
+                    if (_currentPosition.x > 0 && currentRoom.NorthExit && _board.Rooms[_currentPosition.x - 1, _currentPosition.y] != null)
+                    {
                         _currentPosition.x--;
+                    }
                     else
-                        _view.DisplayMessage("You can't move north.");
+                        _view.CannotMoveThatWay();
                     break;
                 case "south":
-                    if (_currentPosition.x < 2 && _board.Rooms[_currentPosition.x + 1, _currentPosition.y]?.SouthExit == true)
+                    if (_currentPosition.x < 2 && currentRoom.SouthExit && _board.Rooms[_currentPosition.x + 1, _currentPosition.y] != null)
                         _currentPosition.x++;
                     else
-                        _view.DisplayMessage("You can't move south.");
+                        _view.CannotMoveThatWay();
                     break;
                 case "east":
-                    if (_currentPosition.y < 2 && _board.Rooms[_currentPosition.x, _currentPosition.y + 1]?.EastExit == true)
+                    if (_currentPosition.y < 2 && currentRoom.EastExit && _board.Rooms[_currentPosition.x, _currentPosition.y + 1] != null)
                         _currentPosition.y++;
                     else
-                        _view.DisplayMessage("You can't move east.");
+                        _view.CannotMoveThatWay();
                     break;
                 case "west":
-                    if (_currentPosition.y > 0 && _board.Rooms[_currentPosition.x, _currentPosition.y - 1]?.WestExit == true)
+                    if (_currentPosition.y > 0 && currentRoom.WestExit && _board.Rooms[_currentPosition.x, _currentPosition.y - 1] != null)
                         _currentPosition.y--;
                     else
-                        _view.DisplayMessage("You can't move west.");
+                        _view.CannotMoveThatWay();
                     break;
                 default:
-                    _view.DisplayMessage("Invalid direction. Try again.");
+                    _view.InvalidAction();
                     break;
             }
         }
@@ -129,7 +131,7 @@ namespace YetAnotherDungeonCrawler
             }
             else
             {
-                _view.DisplayMessage("There is no item to be found here.");
+                _view.ItemNotFound();
             }
         }
 
@@ -178,7 +180,7 @@ namespace YetAnotherDungeonCrawler
             }
             else
             {
-                _view.DisplayMessage("There is no enemy here to attack.");
+                _view.NoEnemy();
             }
         }
     }
