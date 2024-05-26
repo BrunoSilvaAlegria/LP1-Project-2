@@ -22,6 +22,7 @@ namespace YetAnotherDungeonCrawler
         void EnemyDeath();
         void EndMessage();
         string Choice();
+        void SuccessfulMove();
         void InvalidAction();
         string Directions();
         void CannotMoveThatWay();
@@ -29,6 +30,7 @@ namespace YetAnotherDungeonCrawler
         void NoEnemy();
         void ItemFound();
         void ItemNotFound();
-        string GetUserInput();
+        void ItemUsage();
+        void NoItemInInventory();
     }
 }

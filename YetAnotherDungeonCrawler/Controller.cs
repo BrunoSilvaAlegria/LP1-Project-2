@@ -217,7 +217,7 @@ namespace YetAnotherDungeonCrawler
                 if (_player.Health <= 0)
                 {
                     _view.PlayerDeath();
-                    Environment.Exit(0);
+                    return; //Makes the game restart when the player dies
                 }
             }
             else
