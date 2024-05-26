@@ -158,5 +158,22 @@ namespace YetAnotherDungeonCrawler
             Console.WriteLine("There is no item to be found here.");
         }
 
+        /// <summary>
+        /// Method responsible for detecting the item usage
+        /// </summary>
+        public void ItemUsage()
+        {
+            Console.WriteLine($"You used a Healing Potion and restored 10 health.");
+        }
+
+        /// <summary>
+        /// Method responsible for detecting no Item
+        /// presence in the player's inventory
+        /// </summary>
+        public void NoItemInInventory()
+        {
+            Console.WriteLine("You don't have any items in your inventory");
+        }
+
     }
 }
