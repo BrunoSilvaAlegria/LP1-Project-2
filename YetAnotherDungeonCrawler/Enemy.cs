@@ -18,8 +18,8 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         public Enemy()
         {
-            Health = 10; // Enemy health 
-            AttackPower = 3; // Enemy attack power 
+            Health = 10; 
+            AttackPower = 3; 
         }
     }
 }
