@@ -89,7 +89,7 @@ namespace YetAnotherDungeonCrawler
         /// </summary>
         public void EnemyAttack()
         {
-            Console.WriteLine($"The enemy attacked you and dealt {enemy.AttackPower} damage.");
+            Console.WriteLine($"The enemy attacked you and dealt 5 damage.");
         }
         /// <summary>
         /// Method responsible for printing Death message
