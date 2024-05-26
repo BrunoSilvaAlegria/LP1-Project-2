@@ -12,7 +12,7 @@ namespace YetAnotherDungeonCrawler
     /// /// </summary>
     public class Board
     {
-        public Room[,] Rooms { get; private set; }
+        public Room[,] Rooms { get; private set; } //Stores the rooms
 
         public Board(string filePath)
         {
@@ -20,33 +20,43 @@ namespace YetAnotherDungeonCrawler
             ReadBoardData(filePath);
         }
         /// <summary>
-        /// Method responsible for reading board
+        /// Method responsible for reading the rooms description file and
+        /// constructing the board.
+        /// The information of the text file is given in this order:
+        /// X,Y,NorthExitAvailable,SouthExitAvailable,EastExitAvailable,
+        /// WestExitAvailable,HasEnemy,HasItem
         /// </summary>
         /// <param name="filePath"></param>
         private void ReadBoardData(string filePath)
         {
-            using (StreamReader sr = new StreamReader(filePath))
+            //Reads the rooms.txt file
+            using (StreamReader sr = new StreamReader(filePath)) 
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                string line  = sr.ReadLine(); //Reads each line of the text file
+                while (line != null)
                 {
-                    string[] parts = line.Split(',');                    
+                    //Splits the room information by commas(,)
+                    //The information is 
+                    string[] roomParts = line.Split(',');           
 
-                    int x = int.Parse(parts[0]);
-                    int y = int.Parse(parts[1]);
-                    bool northExit = parts[2] == "1";
-                    bool southExit = parts[3] == "1";
-                    bool eastExit = parts[4] == "1";
-                    bool westExit = parts[5] == "1";
-                    bool hasEnemy = parts[6] == "1";
-                    bool hasItem = parts[7] == "1";
+                    int x = int.Parse(roomParts[0]); //First component of the line
+                    int y = int.Parse(roomParts[1]); //Second component of the line
+                    bool northExit = roomParts[2] == "1"; //Third component of the line
+                    bool southExit = roomParts[3] == "1"; //Fourth component of the line
+                    bool eastExit = roomParts[4] == "1"; //Fifth component of the line
+                    bool westExit = roomParts[5] == "1"; //Sixth component of the line
+                    bool hasEnemy = roomParts[6] == "1"; //Seventh component of the line
+                    bool hasItem = roomParts[7] == "1"; //Last component of the line
 
-                    Item roomItem = null;
-                    if (hasItem)
+                    //Starts has null, with the room not having an item
+                    Item roomItem = null; 
+                    if (hasItem) //Sees if there is an item
                     {
-                        roomItem = new Item("Health Potion", 10);
+                        roomItem = new Item("Health Potion", 10); //Creates the item
                     }
-                    Rooms[x, y] = new Room(x, y, northExit, southExit, eastExit, westExit, hasEnemy, roomItem);
+                    //Creates each room with the given description
+                    Rooms[x, y] = new Room(x, y, northExit, southExit, eastExit,
+                     westExit, hasEnemy, roomItem);
                 }
             }
         }
