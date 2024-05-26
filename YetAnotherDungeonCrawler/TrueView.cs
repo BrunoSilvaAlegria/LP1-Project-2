@@ -49,8 +49,9 @@ namespace YetAnotherDungeonCrawler
         {
             Console.WriteLine("You have this available actions: ");
             Console.WriteLine("\nMove\nSearch\nUse Item\nAttack\nQuit");
-            Console.WriteLine("What will you do?");
-            return Console.ReadLine();
+            Console.WriteLine("What will you do?\n");
+            Console.Write("> ");
+            return Console.ReadLine().ToLower(); //Makes the player's input into lowercase
         }
         /// <summary>
         /// Method responsible for End Game message
